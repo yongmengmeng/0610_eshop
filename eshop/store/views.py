@@ -2,15 +2,8 @@ from django.shortcuts import render
 from django.views import View
 from store.models import *
 from django.http import HttpResponse, JsonResponse
+from store.util import *
 import hashlib
-
-
-def set_password(password):
-    """md5加密"""
-    md5 = hashlib.md5()
-    md5.update(password.encode())
-    new_password = md5.hexdigest()
-    return new_password
 
 
 class RegisterView(View):
@@ -51,3 +44,17 @@ class LoginView(View):
         else:
             # 响应
             return HttpResponse('登录失败')
+
+
+class BaseView(View):
+    """模板页"""
+
+    def get(self, request):
+        return render(request, 'store/base.html')
+
+
+class IndexView(View):
+    """首页"""
+
+    def get(self, request):
+        return render(request, 'store/index.html')

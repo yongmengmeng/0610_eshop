@@ -32,7 +32,7 @@ class Store(models.Model):
     image = models.ImageField(upload_to='store/images', verbose_name='logo图')
     phone = models.CharField(max_length=11, verbose_name='电话')
     money = models.FloatField(verbose_name='注册资金')
-    user = models.OneToOneField(to=Seller,on_delete=models.CASCADE,verbose_name='所属卖家')
+    seller = models.OneToOneField(to=Seller,on_delete=models.CASCADE,verbose_name='所属卖家')
     storetypes = models.ManyToManyField(to=StoreType, verbose_name='所属类型')
 
     class Meta:

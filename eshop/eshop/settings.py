@@ -134,7 +134,7 @@ STATICFILES_DIRS = [
 # 设置文件上传的url
 MEDIA_URL = '/media/'
 # 设置文件上传的位置
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 # 设置django-ckeditor
 CKEDITOR_UPLOAD_PATH = 'static/upload'
 CKEDITOR_IMAGE_BACKEDND = 'pillow'

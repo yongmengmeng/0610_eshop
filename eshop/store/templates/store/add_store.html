@@ -1,0 +1,48 @@
+{% extends 'store/base.html' %}
+{% block title %}添加店铺{% endblock %}
+{% block label %}添加店铺{% endblock %}
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-lg-12">
+                <form role="form" method="post" action="/store/add/store/" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>名称</label>
+                        <input class="form-control" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label>地址</label>
+                        <input class="form-control" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label>电话</label>
+                        <input class="form-control" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label>注册资金</label>
+                        <input class="form-control" name="money">
+                    </div>
+                    <div class="form-group">
+                        <label>所属类型</label>
+                        <select multiple="" class="form-control" name="storetype_ids">
+                            {% for storetype in list_storetype %}
+                                <option value="{{ storetype.id }}">{{ storetype.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>logo图</label>
+                        <input type="file" name="image">
+                    </div>
+                    <div class="form-group">
+                        <label>描述</label>
+                        <textarea class="form-control" rows="3" name="descripton"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default">确定</button>
+                    <button type="reset" class="btn btn-default">重置</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -111,3 +111,56 @@ class AddStoreView(View):
         store.save()
         # 响应
         return redirect('/store/')
+
+
+class EditStoreView(View):
+    """编辑店铺"""
+
+    @method_decorator(wrapper_login)
+    def get(self, request):
+        # 从session获取seller_id
+        seller_id = request.session.get('logined')
+        # 查询店铺
+        store = Store.objects.filter(seller_id=seller_id).first()
+        # 查询所有商品类型
+        list_storetype = StoreType.objects.order_by('id')
+        # 响应
+        return render(request, 'store/edit_store.html', {'store': store, 'list_storetype': list_storetype})
+
+    @method_decorator(wrapper_login)
+    def post(self, request):
+        # 获取参数
+        id = request.POST.get("id")
+        name = request.POST.get("name")
+        address = request.POST.get("address")
+        phone = request.POST.get("phone")
+        money = request.POST.get("money")
+        storetype_ids = request.POST.getlist("storetype_ids")
+        descripton = request.POST.get("descripton")
+        # 从session获取seller_id
+        seller_id = request.session.get('logined')
+        # 获取上传的文件对象
+        image = request.FILES.get('image')
+        # 查询对象
+        store = Store.objects.filter(pk=id).first()
+        # 修改属性-基本属性
+        store.name = name
+        store.address = address
+        store.phone = phone
+        store.money = money
+        store.descripton = descripton
+        store.money = money
+        # 修改属性-logo图
+        if image:
+            #删除原来的图片
+            os.remove(os.path.join(settings.MEDIA_ROOT,store.image.name))
+            #修改为新图片对象
+            store.image = image
+        # 修改属性-店铺类型
+        store.storetypes.clear()
+        for storetype_id in storetype_ids:
+            store.storetypes.add(StoreType.objects.get(pk=storetype_id))
+        # 修改
+        store.save()
+        # 响应
+        return redirect('/store/')

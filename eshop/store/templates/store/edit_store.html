@@ -1,43 +1,49 @@
 {% extends 'store/base.html' %}
-{% block title %}添加店铺{% endblock %}
-{% block label %}添加店铺{% endblock %}
+{% block title %}查看店铺{% endblock %}
+{% block label %}查看店铺{% endblock %}
 {% block content %}
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="col-lg-12">
-                <form role="form" method="post" action="/store/add/store/" enctype="multipart/form-data">
+                <form role="form" method="post" action="/store/edit/store/" enctype="multipart/form-data">
                     {% csrf_token %}
+                    <input name="id" type="hidden" value="{{ store.id }}">
                     <div class="form-group">
                         <label>名称</label>
-                        <input class="form-control" name="name">
+                        <input class="form-control" name="name" value="{{ store.name }}">
                     </div>
                     <div class="form-group">
                         <label>地址</label>
-                        <input class="form-control" name="address">
+                        <input class="form-control" name="address" value="{{ store.address }}">
                     </div>
                     <div class="form-group">
                         <label>电话</label>
-                        <input class="form-control" name="phone">
+                        <input class="form-control" name="phone" value="{{ store.phone }}">
                     </div>
                     <div class="form-group">
                         <label>注册资金</label>
-                        <input class="form-control" name="money">
+                        <input class="form-control" name="money" value="{{ store.phone }}">
                     </div>
                     <div class="form-group">
                         <label>所属类型</label>
                         <select multiple="" class="form-control" name="storetype_ids">
                             {% for storetype in list_storetype %}
-                                <option value="{{ storetype.id }}">{{ storetype.name }}</option>
+                                {% if storetype in store.storetypes.all %}
+                                    <option value="{{ storetype.id }}" selected>{{ storetype.name }}1</option>
+                                {% else %}
+                                    <option value="{{ storetype.id }}">{{ storetype.name }}2</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class=" form-group">
                         <label>logo图</label>
+                        <a href="/static/media/{{ store.image }}">{{ store.image }}</a>
                         <input type="file" name="image">
                     </div>
                     <div class="form-group">
                         <label>描述</label>
-                        <textarea class="form-control" rows="3" name="descripton"></textarea>
+                        <textarea class="form-control" rows="3" name="descripton">{{ store.descripton}}</textarea>
                     </div>
                     <button type="submit" class="btn btn-default">确定</button>
                     <button type="reset" class="btn btn-default">重置</button>
@@ -46,7 +52,7 @@
         </div>
     </div>
 {% endblock %}
-{% block javascript add_store.html%}
+{% block javascript %}
     <script type="text/javascript" src="/static/ckeditor/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="/static/store/js/myckeditor.js"></script>
 {% endblock %}

@@ -152,9 +152,9 @@ class EditStoreView(View):
         store.money = money
         # 修改属性-logo图
         if image:
-            #删除原来的图片
-            os.remove(os.path.join(settings.MEDIA_ROOT,store.image.name))
-            #修改为新图片对象
+            # 删除原来的图片
+            os.remove(os.path.join(settings.MEDIA_ROOT, store.image.name))
+            # 修改为新图片对象
             store.image = image
         # 修改属性-店铺类型
         store.storetypes.clear()
@@ -162,5 +162,51 @@ class EditStoreView(View):
             store.storetypes.add(StoreType.objects.get(pk=storetype_id))
         # 修改
         store.save()
+        # 响应
+        return redirect('/store/')
+
+
+class AddGoodsView(View):
+    """新增商品"""
+
+    @method_decorator(wrapper_login)
+    def get(self, request):
+        # # 从session获取seller_id
+        # seller_id = request.session.get('logined')
+        # # 查询店铺
+        # store = Store.objects.filter(seller_id=seller_id).first()
+        # 查询所有商品类型
+        list_goodstype = GoodsType.objects.order_by('id')
+        # 响应
+        return render(request, 'store/add_goods.html', {'list_goodstype': list_goodstype})
+
+    @method_decorator(wrapper_login)
+    def post(self, request):
+        # 获取参数
+        name = request.POST.get("name")
+        price = request.POST.get("price")
+        number = request.POST.get("number")
+        productdate = request.POST.get("productdate")
+        shelflife = request.POST.get("shelflife")
+        goodstype_id = request.POST.get("goodstype_id")
+        description = request.POST.get("description")
+        # 从session获取seller_id
+        seller_id = request.session.get('logined')
+        # 查询店铺
+        store = Store.objects.filter(seller_id=seller_id).first()
+        # 获取上传的文件对象
+        image = request.FILES.get('image')
+        # 新增
+        Goods.objects.create(
+            name=name,
+            price=price,
+            number=number,
+            productdate=productdate,
+            shelflife=shelflife,
+            goodstype_id=goodstype_id,
+            description=description,
+            store=store,
+            image=image
+        )
         # 响应
         return redirect('/store/')

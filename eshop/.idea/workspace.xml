@@ -4,22 +4,15 @@
     <list default="true" id="2f55f870-0cdc-49b2-a65b-79d5a9dbbda4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/eshop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/eshop/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eshop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/eshop/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/media/img/2f89fe7a-c6f1-11e9-a55f-005056c00008.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/media/img/b86f34b6-c6f0-11e9-aa69-005056c00008.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/media/img/c996055e-c6f0-11e9-bf20-005056c00008.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/media/img/girl.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/media/img/girl_Lrb1Sw7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/media/img/girl_NGb1knP.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/media/img/girl_Z3NvDWh.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/media/img/girl_aANEgZP.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/media/img/girl_ap3ITVU.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/media/img/girl_gA23cVt.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/media/img/girl_h99MwjJ.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/media/img/girl_lHH3j8B.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/migrations/0002_auto_20190824_1745.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/migrations/0003_auto_20190825_1630.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/store/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/static/store/js/myckeditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/store/static/store/js/myckeditor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/templates/store/add_store.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/add_store.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/templates/store/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/templates/store/edit_store.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/edit_store.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/views.py" afterDir="false" />
     </list>
@@ -52,11 +45,12 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/store/templates/store" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/media/img" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\work\worspace\0610\0610_eshop\eshop\static\media\img" />
       <recent name="D:\work\worspace\0610\0610_eshop\eshop\store\templates\store" />
       <recent name="D:\work\worspace\0610\0610_eshop\eshop\store" />
       <recent name="D:\work\worspace\0610\0610_eshop\eshop\store\static\store" />
@@ -110,7 +104,9 @@
       <option name="presentableId" value="Default" />
       <updated>1566632463046</updated>
       <workItem from="1566632467986" duration="11442000" />
-      <workItem from="1566699613042" duration="14135000" />
+      <workItem from="1566699613042" duration="14415000" />
+      <workItem from="1566734722213" duration="3627000" />
+      <workItem from="1566816965760" duration="6420000" />
     </task>
     <servers />
   </component>

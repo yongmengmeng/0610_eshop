@@ -82,8 +82,8 @@ DATABASES = {
         'NAME': 'eshop',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': '10.10.2.160',
-        # 'HOST': '10.10.9.197',
+        # 'HOST': '10.10.2.160',
+        'HOST': '10.10.9.197',
         'PORT': '3306',
     }
 }

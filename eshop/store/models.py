@@ -1,6 +1,7 @@
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
 
+
 class Seller(models.Model):
     username = models.CharField(max_length=32, verbose_name='用户名')
     password = models.CharField(max_length=32, verbose_name='密码')
@@ -11,36 +12,58 @@ class Seller(models.Model):
     address = models.CharField(max_length=32, verbose_name='地址', null=True, blank=True)
     cardid = models.CharField(max_length=18, verbose_name='身份证', null=True, blank=True)
 
+    def __str__(self):
+        return self.username
+
     class Meta:
-        verbose_name='卖家'
-        verbose_name_plural='卖家'
-        db_table='eshop_seller'
+        verbose_name = '卖家'
+        verbose_name_plural = '卖家'
+        db_table = 'eshop_seller'
 
 
 class StoreType(models.Model):
     name = models.CharField(max_length=32, verbose_name='名称')
     descripton = models.TextField(verbose_name='描述')
+
+    def __str__(self):
+        return self.name
+
     class Meta:
-        verbose_name='店铺类型'
-        verbose_name_plural='店铺类型'
-        db_table='eshop_storetype'
+        verbose_name = '店铺类型'
+        verbose_name_plural = '店铺类型'
+        db_table = 'eshop_storetype'
 
 
 class Store(models.Model):
     name = models.CharField(max_length=32, verbose_name='名称')
     address = models.CharField(max_length=32, verbose_name='地址')
     # descripton = models.TextField(verbose_name='描述')
-    descripton = RichTextUploadingField(verbose_name='描述')
+    description = RichTextUploadingField(verbose_name='描述')
     image = models.ImageField(upload_to='img', verbose_name='logo图')
     phone = models.CharField(max_length=11, verbose_name='电话')
     money = models.FloatField(verbose_name='注册资金')
-    seller = models.OneToOneField(to=Seller,on_delete=models.CASCADE,verbose_name='所属卖家')
+    seller = models.OneToOneField(to=Seller, on_delete=models.CASCADE, verbose_name='所属卖家')
     storetypes = models.ManyToManyField(to=StoreType, verbose_name='所属类型')
 
     class Meta:
         verbose_name = '店铺'
         verbose_name_plural = '店铺'
         db_table = 'eshop_store'
+
+
+class GoodsType(models.Model):
+    name = models.CharField(max_length=32, verbose_name='名称')
+    description = models.TextField(max_length=32, verbose_name='描述')
+    picture = models.ImageField(upload_to='img')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = '商品类型'
+        verbose_name_plural = '商品类型'
+        db_table = 'eshop_goodstype'
+
 
 class Goods(models.Model):
     name = models.CharField(max_length=32, verbose_name='名称')
@@ -50,12 +73,18 @@ class Goods(models.Model):
     description = models.TextField(verbose_name='描述')
     productdate = models.DateField(verbose_name='生产日期')
     shelflife = models.IntegerField(verbose_name='保质期')
-    stores = models.ManyToManyField(to=Store, verbose_name='所属店铺')
+    store = models.ForeignKey(to=Store, on_delete=models.CASCADE, verbose_name='所属店铺')
+    goodstype = models.ForeignKey(to=GoodsType, on_delete=models.CASCADE, verbose_name='所属类型')
+    up = models.IntegerField(verbose_name='是否上架', default=0)  # 1上架  0下架
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = '商品'
         verbose_name_plural = '商品'
         db_table = 'eshop_goods'
+
 
 class GoodsImg(models.Model):
     image = models.ImageField(upload_to='img', verbose_name='地址')

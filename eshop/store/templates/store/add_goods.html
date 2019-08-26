@@ -1,38 +1,42 @@
 {% extends 'store/base.html' %}
-{% block title %}添加店铺{% endblock %}
-{% block label %}添加店铺{% endblock %}
+{% block title %}添加商品{% endblock %}
+{% block label %}添加商品{% endblock %}
 {% block content %}
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="col-lg-12">
-                <form role="form" method="post" action="/store/add/store/" enctype="multipart/form-data">
+                <form role="form" method="post" action="/store/add/goods/" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-group">
                         <label>名称</label>
                         <input class="form-control" name="name">
                     </div>
                     <div class="form-group">
-                        <label>地址</label>
-                        <input class="form-control" name="address">
+                        <label>价格</label>
+                        <input class="form-control" name="price">
                     </div>
                     <div class="form-group">
-                        <label>电话</label>
-                        <input class="form-control" name="phone">
+                        <label>库存</label>
+                        <input class="form-control" name="number">
                     </div>
                     <div class="form-group">
-                        <label>注册资金</label>
-                        <input class="form-control" name="money">
+                        <label>生产日期</label>
+                        <input class="form-control" name="productdate">
+                    </div>
+                    <div class="form-group">
+                        <label>保质期（单位是天)</label>
+                        <input class="form-control" name="shelflife">
                     </div>
                     <div class="form-group">
                         <label>所属类型</label>
-                        <select multiple="" class="form-control" name="storetype_ids">
-                            {% for storetype in list_storetype %}
-                                <option value="{{ storetype.id }}">{{ storetype.name }}</option>
+                        <select class="form-control" name="goodstype_id">
+                            {% for goodstype in list_goodstype %}
+                                <option value="{{ goodstype.id }}">{{ goodstype.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>logo图</label>
+                        <label>图片</label>
                         <input type="file" name="image">
                     </div>
                     <div class="form-group">
@@ -46,7 +50,7 @@
         </div>
     </div>
 {% endblock %}
-{% block javascript%}
+{% block javascript %}
     <script type="text/javascript" src="/static/ckeditor/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="/static/store/js/myckeditor.js"></script>
 {% endblock %}

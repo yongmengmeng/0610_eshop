@@ -1,0 +1,80 @@
+{% extends 'store/base.html' %}
+{% block title %}商品列表{% endblock %}
+{% block label %}商品列表{% endblock %}
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th class="col-lg-6">名字</th>
+                        <th class="col-lg-6">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span class="btn">老王</span></td>
+                        <td>
+                            <button type="button" class="btn btn-default">上架</button>
+                            <button type="button" class="btn btn-default">删除</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="btn">老王</span></td>
+                        <td>
+                            <button type="button" class="btn btn-default">上架</button>
+                            <button type="button" class="btn btn-default">删除</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.table-responsive -->
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="pagination">Showing 1 to 10 of 57 entries</div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-right">
+                        <ul class="pagination">
+                            <li class="paginate_button previous disabled" aria-controls="dataTables-example"
+                                tabindex="0" id="dataTables-example_previous"><a href="#">Previous</a></li>
+                            <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0"><a
+                                    href="#">1</a></li>
+                            <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a
+                                    href="#">2</a></li>
+                            <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a
+                                    href="#">3</a></li>
+                            <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a
+                                    href="#">4</a></li>
+                            <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a
+                                    href="#">5</a></li>
+                            <li class="paginate_button " aria-controls="dataTables-example" tabindex="0"><a
+                                    href="#">6</a></li>
+                            <li class="paginate_button next" aria-controls="dataTables-example" tabindex="0"
+                                id="dataTables-example_next"><a href="#">Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+{% endblock %}
+{% block javascript %}
+    <script type="text/javascript" src="/static/ckeditor/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/static/store/js/myckeditor.js"></script>
+{% endblock %}

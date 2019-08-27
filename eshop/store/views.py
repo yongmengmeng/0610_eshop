@@ -210,3 +210,15 @@ class AddGoodsView(View):
         )
         # 响应
         return redirect('/store/')
+
+
+class ListGoodsView(View):
+    """商品列表"""
+
+    @method_decorator(wrapper_login)
+    def get(self, request):
+
+        # 查询所有商品
+        list_goods = Goods.objects.order_by('id').values('id','name')
+        # 响应
+        return render(request, 'store/list_goods.html', {'list_goods': list_goods})

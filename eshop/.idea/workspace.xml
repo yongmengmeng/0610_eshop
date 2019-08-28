@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2f55f870-0cdc-49b2-a65b-79d5a9dbbda4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/templates/store/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/templates/store/edit_store.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/edit_store.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/templates/store/list_goods.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/list_goods.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -129,7 +126,9 @@
       <workItem from="1566816965760" duration="6494000" />
       <workItem from="1566867061113" duration="1254000" />
       <workItem from="1566873198244" duration="2235000" />
-      <workItem from="1566884564069" duration="10660000" />
+      <workItem from="1566884564069" duration="10851000" />
+      <workItem from="1566953308628" duration="101000" />
+      <workItem from="1566990178707" duration="6144000" />
     </task>
     <servers />
   </component>

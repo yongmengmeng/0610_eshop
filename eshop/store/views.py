@@ -5,9 +5,10 @@ from django.http import HttpResponse, JsonResponse
 from store.util import *
 from django.utils.decorators import method_decorator
 from django.conf import settings
+from django.core.paginator import Paginator
 import uuid
-import os
 import hashlib
+import os
 
 
 class RegisterView(View):
@@ -217,8 +218,82 @@ class ListGoodsView(View):
 
     @method_decorator(wrapper_login)
     def get(self, request):
-
+        # 设置每页显示的数据的数量
+        page_size = 10
+        # 获取参数
+        goods_name = request.GET.get('goods_name')
+        page_now = request.GET.get('page_now')
+        print('*' * 100)
+        # 判断
+        if not page_now:
+            page_now = 1
+        # 字符串转数字
+        page_now = int(page_now)
+        if not goods_name:
+            goods_name = ''
         # 查询所有商品
-        list_goods = Goods.objects.order_by('id').values('id','name')
+        qs_goods = Goods.objects.filter(name__contains=goods_name).order_by('id')
+        # 创建分页对象
+        my_paginator = Paginator(qs_goods, page_size)
+        # 获取当前页对象
+        my_page = my_paginator.page(page_now)
+
+        # 总个数
+        count = my_paginator.count
+        # 总页数
+        num_pages = my_paginator.num_pages
+        # 开始数字
+        num_from = (page_now - 1) * page_size + 1
+        # 结束数字
+        num_to = page_now * page_size
+        if num_to > count:
+            num_to = count
+        # 当页的商品集合
+        list_goods = my_page.object_list
+        # 增加属性编号
+        for index, goods in enumerate(list_goods):
+            goods.num = index + num_from
+
+        # 是否有上一页
+        has_previous = my_page.has_previous()
+        # 是否有下一页
+        has_next = my_page.has_next()
+
+        """页码处理,仿百度"""
+        # 算法逻辑
+        if page_now <= page_size / 2 + 1:
+            page_start = 1
+            page_end = page_size
+        elif page_now > page_size / 2 + 1:
+            page_start = page_now - page_size / 2
+            page_end = page_now + page_size / 2 - 1
+        # 对page_end进行校验，并重新赋值
+        if page_end > num_pages:
+            page_end = num_pages
+        # 当不足page_num数目时，要全部显示，所以page_start要置为1
+        if page_end <= page_size:
+            page_start = 1
+        # 处理得到分页页码列表
+        page_start = int(page_start)
+        page_end = int(page_end)
+        my_page_range = [i for i in range(page_start, page_end + 1)]
+
+        data = {
+            'list_goods': list_goods,
+            'num_pages': num_pages,
+            'page_now': page_now,
+            'page_size': page_size,
+            'count': my_paginator.count,
+            'num_from': num_from,
+            'num_to': num_to,
+            'my_page_range': my_page_range,
+            'goods_name': goods_name,
+            'has_next': has_next,
+            'has_previous': has_previous,
+        }
         # 响应
-        return render(request, 'store/list_goods.html', {'list_goods': list_goods})
+        return render(request, 'store/list_goods.html', data)
+
+        # 1   1 - 10
+        # 2   11 - 20
+        # 3   21 - 30

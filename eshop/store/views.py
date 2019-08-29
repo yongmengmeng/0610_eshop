@@ -236,7 +236,10 @@ class ListGoodsView(View):
         # 创建分页对象
         my_paginator = Paginator(qs_goods, page_size)
         # 获取当前页对象
-        my_page = my_paginator.page(page_now)
+        try:
+            my_page = my_paginator.page(page_now)
+        except:
+            return redirect('/store/list/goods/?page_now={}&goods_name={}'.format(1, goods_name))
 
         # 总个数
         count = my_paginator.count
@@ -297,3 +300,54 @@ class ListGoodsView(View):
         # 1   1 - 10
         # 2   11 - 20
         # 3   21 - 30
+
+
+class DeleteGoodsView(View):
+    """商品列表"""
+
+    @method_decorator(wrapper_login)
+    def get(self, request):
+        # 获取参数
+        goods_name = request.GET.get('goods_name')
+        page_now = request.GET.get('page_now')
+        goods_id = request.GET.get('id')
+        # 判断
+        if not page_now:
+            page_now = 1
+        if not goods_name:
+            goods_name = ''
+
+        # 根据id查询对象
+        goods = Goods.objects.filter(pk=goods_id).first()
+        # 删除
+        goods.delete()
+        # 重定向
+        return redirect('/store/list/goods/?page_now={}&goods_name={}'.format(page_now, goods_name))
+
+
+class UpdateGoodsUpView(View):
+    """修改商品上下架"""
+
+    @method_decorator(wrapper_login)
+    def get(self, request):
+        # 获取参数
+        goods_name = request.GET.get('goods_name')
+        page_now = request.GET.get('page_now')
+        up = request.GET.get('up')
+        goods_id = request.GET.get('id')
+        # 判断
+        if not page_now:
+            page_now = 1
+        if not goods_name:
+            goods_name = ''
+        # 根据id查询对象
+        goods = Goods.objects.filter(pk=goods_id).first()
+        print('-' * 100)
+        print(type(up), up)
+        if up == '1':
+            goods.up = 0
+        else:
+            goods.up = 1
+        goods.save()
+        # 重定向
+        return redirect('/store/list/goods/?page_now={}&goods_name={}'.format(page_now, goods_name))

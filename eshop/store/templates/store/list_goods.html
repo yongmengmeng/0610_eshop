@@ -33,8 +33,12 @@
                             <td class="col-lg-2"><span class="btn">{{ goods.num }}</span></td>
                             <td class="col-lg-8"><span class="btn">{{ goods.name }}</span></td>
                             <td class="col-lg-2">
-                                <button type="button" class="btn btn-default">上架</button>
-                                <button type="button" class="btn btn-default">删除</button>
+                                {% ifequal goods.up 1%}
+                                <a class="btn btn-default" href="/store/update/goods/up/?id={{ goods.id }}&page_now={{ page_now }}&goods_name={{ goods_name }}&up={{ goods.up }}">下架</a>
+                                {% else %}
+                                <a class="btn btn-default" href="/store/update/goods/up/?id={{ goods.id }}&page_now={{ page_now }}&goods_name={{ goods_name }}&up={{ goods.up }}">上架</a>
+                                {% endifequal %}
+                                <a class="btn btn-default" href="/store/delete/goods/?id={{ goods.id }}&page_now={{ page_now }}&goods_name={{ goods_name }}">删除</a>
                             </td>
                         </tr>
                     {% endfor %}

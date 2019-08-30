@@ -143,6 +143,8 @@ CKEDITOR_IMAGE_BACKEDND = 'pillow'
 LOGIN_URL = '/buyer/login/'
 # 2、用户模块
 AUTH_USER_MODEL = 'buyer.Buyer'
+# 3、验证用户，比如登录
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
 
 #################配置发送邮件#################
 # 1、django中的发邮件的管理类

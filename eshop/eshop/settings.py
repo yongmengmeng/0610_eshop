@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'slo!46)kdf7%2+i_o&0oi)o(d3fhgsg2pp8^wq-%!idulcs2e3'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -40,6 +38,7 @@ INSTALLED_APPS = [
     'store',
     'ckeditor',
     'ckeditor_uploader',
+    'buyer',
 ]
 
 MIDDLEWARE = [
@@ -72,14 +71,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'eshop.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'eshop',
+        'NAME': 'my_eshop',
         'USER': 'root',
         'PASSWORD': 'root',
         # 'HOST': '10.10.2.160',
@@ -87,7 +85,6 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -107,22 +104,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-#设置时间
+# 设置时间
 TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
-#设置时间
+# 设置时间
 USE_TZ = False
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
@@ -140,5 +135,25 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 # 设置django-ckeditor
 CKEDITOR_UPLOAD_PATH = 'upload'
 CKEDITOR_IMAGE_BACKEDND = 'pillow'
-#设置收集静态文件的路径
+# 设置收集静态文件的路径
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+#################用户认证系统#################
+# 1、登录url
+LOGIN_URL = '/buyer/login/'
+# 2、用户模块
+AUTH_USER_MODEL = 'buyer.Buyer'
+
+#################配置发送邮件#################
+# 1、django中的发邮件的管理类
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# 2、smtp服务器
+EMAIL_HOST = 'smtp.126.com'
+# 3、smtp服务器端口号
+EMAIL_PORT = 25
+# 4、发送邮件的邮箱
+EMAIL_HOST_USER = 'gebidaxiaowang@126.com'
+# 5、在邮箱中设置的客户端授权密码
+EMAIL_HOST_PASSWORD = '1807bb'
+# 6、# 收件人看到的发件人信息
+EMAIL_FROM = '天天生鲜<gebidaxiaowang@126.com>'

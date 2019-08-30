@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2f55f870-0cdc-49b2-a65b-79d5a9dbbda4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/templates/store/list_goods.html" beforeDir="false" afterPath="$PROJECT_DIR$/store/templates/store/list_goods.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eshop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/eshop/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eshop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/eshop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,9 +20,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -42,10 +42,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\work\worspace\0610\0610_eshop\eshop" />
+      <recent name="D:\work\worspace\0610\0610_eshop\eshop\buyer\templates\buyer" />
+      <recent name="D:\work\worspace\0610\0610_eshop\eshop\buyer" />
+      <recent name="D:\work\worspace\0610\0610_eshop\eshop\buyer\static\buyer" />
       <recent name="D:\work\worspace\0610\0610_eshop\eshop\store\templates\store" />
-      <recent name="D:\work\worspace\0610\0610_eshop\eshop\static\media\img" />
-      <recent name="D:\work\worspace\0610\0610_eshop\eshop\store" />
-      <recent name="D:\work\worspace\0610\0610_eshop\eshop\store\static\store" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -131,6 +132,7 @@
       <workItem from="1566884564069" duration="10851000" />
       <workItem from="1566953308628" duration="101000" />
       <workItem from="1566990178707" duration="6144000" />
+      <workItem from="1567164473947" duration="467000" />
     </task>
     <servers />
   </component>

@@ -37,7 +37,6 @@ class StoreType(models.Model):
 class Store(models.Model):
     name = models.CharField(max_length=32, verbose_name='名称')
     address = models.CharField(max_length=32, verbose_name='地址')
-    # descripton = models.TextField(verbose_name='描述')
     description = RichTextUploadingField(verbose_name='描述')
     image = models.ImageField(upload_to='img', verbose_name='logo图')
     phone = models.CharField(max_length=11, verbose_name='电话')

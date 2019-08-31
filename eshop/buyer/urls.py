@@ -6,4 +6,5 @@ urlpatterns = [
     path('login/', LoginView.as_view()),
     path('active/', ActiveView.as_view()),
     path('index/', IndexView.as_view()),
+    path('detail/', DetailView.as_view()),
 ]

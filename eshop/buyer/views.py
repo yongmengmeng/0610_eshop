@@ -70,7 +70,7 @@ class LoginView(View):
         # 获取cookie
         username = request.COOKIES.get('username')
         # 响应
-        return render(request, 'buyer/login.html',{'username':username})
+        return render(request, 'buyer/login.html', {'username': username})
 
     def post(self, request):
         # 接收数据
@@ -122,14 +122,14 @@ class IndexView(View):
     """登录"""
 
     def get(self, request):
-        #获取所有商品类型
+        # 获取所有商品类型
         list_goodstype = GoodsType.objects.order_by('id')
-        #循环，动态添加属性
+        # 循环 动态添加属性  three属性表示销量最高的商品前3个   four属性表示最新日期的商品前4个
         for goodstype in list_goodstype:
-            goodstype.four = Goods.objects.filter(goodstype=goodstype,up=True).order_by('-productdate')[:4]
-            goodstype.three = Goods.objects.filter(goodstype=goodstype,up=True).order_by('-sale')[:3]
+            goodstype.three = Goods.objects.filter(goodstype=goodstype, up=True).order_by('-sale')[:3]
+            goodstype.four = Goods.objects.filter(goodstype=goodstype, up=True).order_by('-productdate')[:4]
         # 响应
-        return render(request, 'buyer/index.html',{'list_goodstype':list_goodstype})
+        return render(request, 'buyer/index.html', {'list_goodstype': list_goodstype})
 
 
 class ActiveView(View):
@@ -154,3 +154,17 @@ class ActiveView(View):
         buyer.save()
         # 响应
         return HttpResponse('激活成功')
+
+
+class DetailView(View):
+    """详情"""
+
+    def get(self, request):
+        # 获取参数
+        goods_id = request.GET.get('gid')
+        # 根据商品id获取商品对象
+        goods = Goods.objects.filter(pk=goods_id).first()
+        # 查询商品同类型下的最新上架的3个商品
+        list_goods = Goods.objects.filter(goodstype=goods.goodstype).order_by('-id')[:2]
+        # 响应
+        return render(request, 'buyer/detail.html', {'goods': goods, 'list_goods': list_goods})

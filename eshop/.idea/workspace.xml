@@ -4,11 +4,8 @@
     <list default="true" id="2f55f870-0cdc-49b2-a65b-79d5a9dbbda4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buyer/templates/buyer/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/buyer/templates/buyer/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buyer/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/buyer/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buyer/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/buyer/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eshop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/eshop/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -136,7 +133,7 @@
       <workItem from="1566990178707" duration="6144000" />
       <workItem from="1567164473947" duration="4963000" />
       <workItem from="1567238951708" duration="171000" />
-      <workItem from="1567239142663" duration="8048000" />
+      <workItem from="1567239142663" duration="10469000" />
     </task>
     <servers />
   </component>

@@ -68,13 +68,15 @@ class Goods(models.Model):
     name = models.CharField(max_length=32, verbose_name='名称')
     price = models.FloatField(verbose_name='价格')
     image = models.ImageField(upload_to='img', verbose_name='图片')
-    number = models.IntegerField(verbose_name='库存')
+    number = models.IntegerField(default=0,verbose_name='库存')
     description = models.TextField(verbose_name='描述')
     productdate = models.DateField(verbose_name='生产日期')
     shelflife = models.IntegerField(verbose_name='保质期')
     store = models.ForeignKey(to=Store, on_delete=models.CASCADE, verbose_name='所属店铺')
     goodstype = models.ForeignKey(to=GoodsType, on_delete=models.CASCADE, verbose_name='所属类型')
-    up = models.IntegerField(verbose_name='是否上架', default=0)  # 1上架  0下架
+    up = models.BooleanField(verbose_name='商品上架',default=False) # True:上架  False：下架
+    unite = models.CharField(default='500g',max_length=20, verbose_name='单位')
+    sale = models.IntegerField(default=0, verbose_name='销量')
 
     def __str__(self):
         return self.name

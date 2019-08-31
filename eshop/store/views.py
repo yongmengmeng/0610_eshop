@@ -90,7 +90,7 @@ class AddStoreView(View):
         phone = request.POST.get("phone")
         money = request.POST.get("money")
         storetype_ids = request.POST.getlist("storetype_ids")
-        descripton = request.POST.get("descripton")
+        description = request.POST.get("description")
         # 从session获取seller_id
         seller_id = request.session.get('logined')
         # 获取上传的文件对象
@@ -101,7 +101,7 @@ class AddStoreView(View):
             address=address,
             phone=phone,
             money=money,
-            descripton=descripton,
+            description=description,
             seller_id=seller_id,
             image=image
         )
@@ -137,7 +137,7 @@ class EditStoreView(View):
         phone = request.POST.get("phone")
         money = request.POST.get("money")
         storetype_ids = request.POST.getlist("storetype_ids")
-        descripton = request.POST.get("descripton")
+        description = request.POST.get("description")
         # 从session获取seller_id
         seller_id = request.session.get('logined')
         # 获取上传的文件对象
@@ -149,7 +149,7 @@ class EditStoreView(View):
         store.address = address
         store.phone = phone
         store.money = money
-        store.descripton = descripton
+        store.description = description
         store.money = money
         # 修改属性-logo图
         if image:
@@ -342,8 +342,6 @@ class UpdateGoodsUpView(View):
             goods_name = ''
         # 根据id查询对象
         goods = Goods.objects.filter(pk=goods_id).first()
-        print('-' * 100)
-        print(type(up), up)
         if up == '1':
             goods.up = 0
         else:

@@ -11,6 +11,7 @@ from buyer.util import *
 from itsdangerous import SignatureExpired, BadSignature
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login, logout
+from store.models import *
 import os
 
 
@@ -120,15 +121,15 @@ class LoginView(View):
 class IndexView(View):
     """登录"""
 
-    # @method_decorator(login_required)
     def get(self, request):
-        print(dir(request))
-        print('*' * 10000)
-        print(request.scheme)
-        print(request.get_host())
-        print(request.get_port())
+        #获取所有商品类型
+        list_goodstype = GoodsType.objects.order_by('id')
+        #循环，动态添加属性
+        for goodstype in list_goodstype:
+            goodstype.four = Goods.objects.filter(goodstype=goodstype,up=True).order_by('-productdate')[:4]
+            goodstype.three = Goods.objects.filter(goodstype=goodstype,up=True).order_by('-sale')[:3]
         # 响应
-        return render(request, 'buyer/index.html')
+        return render(request, 'buyer/index.html',{'list_goodstype':list_goodstype})
 
 
 class ActiveView(View):

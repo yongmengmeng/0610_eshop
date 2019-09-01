@@ -5,7 +5,7 @@
         <a href="/buyer/index/" class="logo fl"><img src="/static/buyer/images/logo.png"></a>
         <form action="/buyer/search/">
             <div class="search_con fl">
-                <input type="text" class="input_text fl" name="key_word" placeholder="搜索商品">
+                <input type="text" class="input_text fl" name="key_word" value="{{ key_word }}" placeholder="搜索商品">
                 <input type="submit" class="input_btn fr" name="" value="搜索">
             </div>
         </form>
@@ -42,7 +42,7 @@
     <div class="breadcrumb">
         <a href="#">全部分类</a>
         <span>></span>
-        <a href="#">{{ goodstype.name }}</a>
+        <a href="#">搜搜结果</a>
     </div>
 
     <div class="main_wrap clearfix">
@@ -63,9 +63,9 @@
 
         <div class="r_wrap fr clearfix">
             <div class="sort_bar">
-                <a href="/buyer/list/?page_now=1&goodstype_id={{ goodstype.id }}&sort=0" {% ifequal sort '0' %}class="active"{% endifequal %}>默认</a>
-                <a href="/buyer/list/?page_now=1&goodstype_id={{ goodstype.id }}&sort=1" {% ifequal sort '1' %}class="active"{% endifequal %}>价格</a>
-                <a href="/buyer/list/?page_now=1&goodstype_id={{ goodstype.id }}&sort=2" {% ifequal sort '2' %}class="active"{% endifequal %}>人气</a>
+                <a href="/buyer/search/?page_now=1&key_word={{ key_word }}&sort=0" {% ifequal sort '0' %}class="active"{% endifequal %}>默认</a>
+                <a href="/buyer/search/?page_now=1&key_word={{ key_word }}&sort=1" {% ifequal sort '1' %}class="active"{% endifequal %}>价格</a>
+                <a href="/buyer/search/?page_now=1&key_word={{ key_word }}&sort=2" {% ifequal sort '2' %}class="active"{% endifequal %}>人气</a>
             </div>
 
             <ul class="goods_type_list clearfix">
@@ -85,19 +85,19 @@
 
             <div class="pagenation">
                 {% if has_previous %}
-                    <a href="/buyer/list/?page_now={{ page_now|add:'-1' }}&goodstype_id={{ goodstype.id }}&sort={{ sort }}"><上一页</a>
+                    <a href="/buyer/search/?page_now={{ page_now|add:'-1' }}&goodstype_id={{ goodstype.id }}&sort={{ sort }}"><上一页</a>
                 {% else %}
                     <a href="#" style="display: none"><上一页</a>
                 {% endif %}
                 {% for page_num in my_page_range %}
                     {% ifequal page_now page_num %}
-                        <a href="/buyer/list/?page_now={{ page_num }}&goodstype_id={{ goodstype.id }}&sort={{ sort }}" class="active">{{ page_num }}</a>
+                        <a href="/buyer/search/?page_now={{ page_num }}&key_word={{ key_word }}&sort={{ sort }}" class="active">{{ page_num }}</a>
                     {% else %}
-                        <a href="/buyer/list/?page_now={{ page_num }}&goodstype_id={{ goodstype.id }}&sort={{ sort }}">{{ page_num }}</a>
+                        <a href="/buyer/search/?page_now={{ page_num }}&key_word={{ key_word }}&sort={{ sort }}">{{ page_num }}</a>
                     {% endifequal %}
                 {% endfor %}
                 {% if has_next %}
-                    <a href="/buyer/list/?page_now={{ page_now|add:'1' }}&goodstype_id={{ goodstype.id }}&sort={{ sort }}"><下一页</a>
+                    <a href="/buyer/search/?page_now={{ page_now|add:'1' }}&key_word={{ key_word }}&sort={{ sort }}"><下一页</a>
                 {% else %}
                     <a href="#" style="display: none"><下一页</a>
                 {% endif %}

@@ -247,3 +247,78 @@ class ListView(View):
         }
         ##################################响应####################################
         return render(request, 'buyer/list.html', data)
+
+
+class SearchView(View):
+    """列表页"""
+
+    def get(self, request):
+        ###################################获取参数###################################
+        # 排序方式
+        sort = request.GET.get('sort')
+        # 搜索关键词
+        key_word = request.GET.get('key_word')
+        # 页码
+        page_now = request.GET.get('page_now')
+        ###################################判断排序方式###################################
+        if not sort:
+            sort = '0'
+        ##################################判断处理页码####################################
+        if not page_now:
+            page_now = 1
+        page_now = int(page_now)
+        ##################################判断搜索关键词####################################
+        if not key_word:
+            key_word = ''
+        ##################################根据排序方式获取结果集####################################
+        # 判断排序方式，根据不同的排序方式获取对应的用于分页的结果集 '0': 按照id倒叙  '1': 按照价格  '2': 按照销量人气
+        if sort == '1':
+            qs_goods = Goods.objects.filter(name__icontains=key_word).order_by('price')
+        elif sort == '2':
+            qs_goods = Goods.objects.filter(name__icontains=key_word).order_by('-sale')
+        else:
+            qs_goods = Goods.objects.filter(name__icontains=key_word).order_by('id')
+        ##################################分页相关####################################
+        # 设置每页显示的数据的数量
+        page_size = 10
+        # 创建分页对象
+        my_paginator = Paginator(qs_goods, page_size)
+        # 总个数
+        count = my_paginator.count
+        # 总页数
+        num_pages = my_paginator.num_pages
+        # 获取当前页对象
+        try:
+            my_page = my_paginator.page(page_now)
+        except Exception as ex:
+            if page_now > num_pages:
+                page_now = num_pages
+            elif page_now - 1 > 0:
+                page_now = page_now - 1
+            return redirect('/buyer/list/?page_now={}&sort={}'.format(page_now, sort))
+        # 当页的商品集合
+        list_goods = my_page.object_list
+        # 是否有上一页
+        has_previous = my_page.has_previous()
+        # 是否有下一页
+        has_next = my_page.has_next()
+        # 获取分页页码：仿百度分页页码
+        my_page_range = baidu_page(page_now, page_size, num_pages)
+        # 6、查询最新上架的2个商品
+        list_new_goods = Goods.objects.order_by('-id')[:2]
+        ##################################准备数据字典####################################
+        data = {
+            'list_goods': list_goods,
+            'num_pages': num_pages,
+            'page_now': page_now,
+            'page_size': page_size,
+            'count': my_paginator.count,
+            'my_page_range': my_page_range,
+            'has_next': has_next,
+            'has_previous': has_previous,
+            'list_new_goods': list_new_goods,
+            'sort': sort,
+            'key_word': key_word,
+        }
+        ##################################响应####################################
+        return render(request, 'buyer/search.html', data)

@@ -78,8 +78,8 @@
                 <ul>
                     {% for goods in list_goods %}
                         <li>
-                            <a href="/buyer/detail/?gid={{ goods.id }}"><img src="/static/media/{{ goods.image }}"></a>
-                            <h4><a href="/buyer/detail/?gid={{ goods.id }}">{{ goods.name }}</a></h4>
+                            <a href="/buyer/detail/?goods_id={{ goods.id }}"><img src="/static/media/{{ goods.image }}"></a>
+                            <h4><a href="/buyer/detail/?goods_id={{ goods.id }}">{{ goods.name }}</a></h4>
                             <div class="prize">￥{{ goods.price }}</div>
                         </li>
                     {% endfor %}
